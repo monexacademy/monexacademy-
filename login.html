@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تسجيل الدخول | أكاديمية مونكس</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Cairo", sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-box {
+      background: rgba(255,255,255,0.05);
+      padding: 30px;
+      border-radius: 15px;
+      width: 340px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+    .logo {
+      margin-bottom: 15px;
+    }
+    .logo img {
+      width: 80px;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+    h2 {
+      margin-bottom: 15px;
+      color: #f5a623;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      font-size: 14px;
+    }
+    .btn {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .btn-login {
+      background: #f5a623;
+      color: #fff;
+    }
+    .btn-login:hover {
+      background: #d4881f;
+    }
+    .btn-signup {
+      background: #fff;
+      color: #333;
+    }
+    .btn-signup:hover {
+      background: #ddd;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 15px;
+      color: #f5a623;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } 
+      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNm12L0150",
+      authDomain: "monex-academ.firebaseapp.com",
+      projectId: "monex-academ",
+      storageBucket: "monex-academ.appspot.com",
+      messagingSenderId: "739982923559",
+      appId: "1:739982923559:web:82432263c1758861d3fb02",
+      measurementId: "G-V33BX5JMNV"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.login = function () {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => window.location.href = "index.html")
+        .catch((error) => alert(error.message));
+    };
+
+    window.signup = function () {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          alert("✅ تم إنشاء الحساب بنجاح");
+          window.location.href = "index.html";
+        })
+        .catch((error) => alert(error.message));
+    };
+
+    // زر الرجوع للرئيسية
+    window.goHome = function () {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          window.location.href = "index.html";
+        } else {
+          alert("⚠ يجب تسجيل الدخول أولاً للوصول إلى الرئيسية.");
+        }
+      });
+    };
+  </script>
+</head>
+<body>
+  <div class="login-box">
+    <div class="logo">
+      <!-- ضع شعار موقعك -->
+      <img src="logo.png" alt="شعار الأكاديمية">
+    </div>
+    <h2>تسجيل الدخول</h2>
+    <input type="email" id="email" placeholder="البريد الإلكتروني">
+    <input type="password" id="password" placeholder="كلمة المرور">
+    <button class="btn btn-login" onclick="login()">دخول</button>
+    <button class="btn btn-signup" onclick="signup()">إنشاء حساب</button>
+    <a class="back-link" href="#" onclick="goHome()">⬅ الرجوع إلى الرئيسية</a>
+  </div>
+</body>
+</html>
