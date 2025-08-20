@@ -4,77 +4,110 @@
   <meta charset="UTF-8">
   <title>تسجيل الدخول | أكاديمية مونكس</title>
   <style>
+    :root {
+      --gold: #d4af37;
+      --gold-light: #f1d17a;
+      --bg-dark: #0e0e10;
+      --bg-dark2: #151518;
+      --text: #f7f7f7;
+      --muted: #bdbdbd;
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --ring: 0 0 0 3px rgba(212, 175, 55, .25);
+    }
+
     body {
       margin: 0;
       font-family: "Cairo", sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: #fff;
+      background: linear-gradient(160deg, var(--bg-dark), var(--bg-dark2));
+      color: var(--text);
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      padding: 20px;
     }
+
     .login-box {
-      background: rgba(255,255,255,0.05);
+      background: rgba(21,21,24,0.6);
       padding: 30px;
-      border-radius: 15px;
-      width: 340px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 380px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(212,175,55,.25);
       text-align: center;
     }
-    .logo {
-      margin-bottom: 15px;
-    }
-    .logo img {
-      width: 80px;
-      border-radius: 50%;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-    }
+
     h2 {
-      margin-bottom: 15px;
-      color: #f5a623;
+      margin-bottom: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      background: linear-gradient(92deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
+
     input {
       width: 100%;
       padding: 12px;
       margin: 10px 0;
-      border: none;
-      border-radius: 8px;
+      border: 1px solid rgba(212,175,55,.3);
+      border-radius: 12px;
       outline: none;
       font-size: 14px;
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      transition: border .3s, box-shadow .3s;
     }
+
+    input:focus {
+      border-color: var(--gold);
+      box-shadow: var(--ring);
+    }
+
     .btn {
       width: 100%;
       padding: 12px;
       margin-top: 10px;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
       font-size: 15px;
       font-weight: bold;
       transition: 0.3s;
     }
+
     .btn-login {
-      background: #f5a623;
-      color: #fff;
+      background: linear-gradient(92deg, var(--gold), var(--gold-light));
+      color: #1b1400;
+      box-shadow: 0 6px 20px rgba(212,175,55,.22);
     }
+
     .btn-login:hover {
-      background: #d4881f;
+      transform: translateY(-1px);
     }
+
     .btn-signup {
-      background: #fff;
-      color: #333;
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      border: 1px solid rgba(212,175,55,.35);
     }
+
     .btn-signup:hover {
-      background: #ddd;
+      background: rgba(255,255,255,0.1);
     }
+
     .back-link {
       display: inline-block;
       margin-top: 15px;
-      color: #f5a623;
+      color: var(--gold-light);
       text-decoration: none;
       font-size: 14px;
     }
+
     .back-link:hover {
       text-decoration: underline;
     }
@@ -117,7 +150,6 @@
         .catch((error) => alert(error.message));
     };
 
-    // زر الرجوع للرئيسية
     window.goHome = function () {
       onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -131,10 +163,6 @@
 </head>
 <body>
   <div class="login-box">
-    <div class="logo">
-      <!-- ضع شعار موقعك -->
-      <img src="logo.png" alt="شعار الأكاديمية">
-    </div>
     <h2>تسجيل الدخول</h2>
     <input type="email" id="email" placeholder="البريد الإلكتروني">
     <input type="password" id="password" placeholder="كلمة المرور">
@@ -144,3 +172,4 @@
   </div>
 </body>
 </html>
+
