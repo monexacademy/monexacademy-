@@ -118,26 +118,29 @@
       color: var(--gold);
     }
 
-    /* زر إنستغرام */
-    .ig-btn {
+    /* رابط إنستغرام */
+    .ig-link {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 42px;
-      height: 42px;
+      gap: 8px;
       margin-top: 15px;
-      border-radius: 50%;
-      border: 1px solid #e1306c;
+      font-size: 15px;
+      font-weight: bold;
+      color: #e1306c;
       text-decoration: none;
+      transition: color .3s;
     }
-    .ig-btn svg {
-      display: block;
+    .ig-link svg {
+      width: 22px;
+      height: 22px;
       fill: #e1306c;
+      transition: fill .3s;
     }
-    .ig-btn:hover {
-      background: #e1306c;
+    .ig-link:hover {
+      color: #fff;
     }
-    .ig-btn:hover svg {
+    .ig-link:hover svg {
       fill: #fff;
     }
 
@@ -197,11 +200,12 @@
     <input type="password" id="password" placeholder="كلمة المرور">
     <button class="btn btn-login" onclick="login()">دخول</button>
 
-    <!-- زر إنستغرام -->
-    <a class="ig-btn" href="https://www.instagram.com/monex_academy/" target="_blank" rel="noopener" aria-label="Instagram">
-      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+    <!-- رابط إنستغرام مع الاسم -->
+    <a class="ig-link" href="https://www.instagram.com/monex_academy/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6-0.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
       </svg>
+      monex_academy
     </a>
 
     <a class="back-link" href="#" onclick="goHome()">⬅ الرجوع إلى الرئيسية</a>
