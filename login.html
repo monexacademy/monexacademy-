@@ -15,75 +15,29 @@
       --shadow: 0 12px 35px rgba(0,0,0,.6);
     }
 
-    * {box-sizing: border-box;}
-
     body {
       margin: 0;
       font-family: "Cairo", sans-serif;
+      background: radial-gradient(circle at top, #1a1a1d, #0b0b0c);
       color: var(--text);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
-      background: linear-gradient(145deg, var(--bg-dark), var(--bg-dark2));
-      overflow: hidden;
+      padding: 15px;
     }
 
-    /* خلفية ثلاثية الأبعاد */
-    .bg {
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at center, #222 0%, #000 100%);
-      overflow: hidden;
-      z-index: -1;
-      animation: rotateBg 20s linear infinite;
-      transform: perspective(1000px) rotateX(25deg) rotateZ(0deg);
-    }
-
-    .bg::before {
-      content: "";
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      background-image: repeating-linear-gradient(
-        45deg,
-        rgba(212,175,55,0.08) 0px,
-        rgba(212,175,55,0.08) 2px,
-        transparent 2px,
-        transparent 40px
-      );
-      animation: moveLines 12s linear infinite;
-    }
-
-    @keyframes rotateBg {
-      0% { transform: perspective(1000px) rotateX(25deg) rotateZ(0deg);}
-      100% { transform: perspective(1000px) rotateX(25deg) rotateZ(360deg);}
-    }
-
-    @keyframes moveLines {
-      0% { transform: translateY(0);}
-      100% { transform: translateY(-200px);}
-    }
-
-    /* صندوق تسجيل الدخول */
     .login-box {
       width: 100%;
-      max-width: 400px;
-      padding: 40px 30px;
-      background: rgba(21,21,24,0.8);
+      max-width: 380px;
+      padding: 35px 25px;
+      background: linear-gradient(145deg, #141414, #1d1d21);
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(15px);
-      animation: fadeIn 0.8s ease;
+      box-shadow: inset -4px -4px 10px rgba(255,255,255,.05),
+                  inset 4px 4px 10px rgba(0,0,0,.6),
+                  var(--shadow);
       text-align: center;
-      transform-style: preserve-3d;
-      transition: transform 0.3s ease;
-    }
-
-    .login-box:hover {
-      transform: rotateY(5deg) rotateX(5deg) scale(1.02);
+      animation: fadeIn 0.9s ease;
     }
 
     .logo {
@@ -91,15 +45,15 @@
       height: 90px;
       border-radius: 50%;
       margin-bottom: 15px;
-      object-fit: cover;
       border: 3px solid var(--gold);
-      box-shadow: 0 0 20px rgba(212,175,55,.5);
+      box-shadow: 0 0 25px rgba(212,175,55,.4);
+      object-fit: cover;
       animation: glow 2s infinite alternate;
     }
 
     h2 {
-      margin-bottom: 24px;
-      font-size: 26px;
+      margin-bottom: 20px;
+      font-size: 24px;
       font-weight: bold;
       background: linear-gradient(92deg, var(--gold), var(--gold-light));
       -webkit-background-clip: text;
@@ -114,26 +68,26 @@
       border: 1px solid rgba(212,175,55,.35);
       border-radius: 12px;
       outline: none;
-      font-size: 16px;
-      background: rgba(255,255,255,0.06);
+      font-size: 15px;
+      background: rgba(255,255,255,0.05);
       color: var(--text);
-      transition: border .3s, box-shadow .3s, transform .2s;
+      transition: all .3s;
     }
 
     input:focus {
       border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(212,175,55,.25);
+      box-shadow: 0 0 10px rgba(212,175,55,.4);
       transform: scale(1.02);
     }
 
     .btn {
       width: 100%;
       padding: 14px;
-      margin-top: 14px;
+      margin-top: 12px;
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: bold;
       transition: all 0.3s ease;
     }
@@ -141,12 +95,12 @@
     .btn-login {
       background: linear-gradient(92deg, var(--gold), var(--gold-light));
       color: #1b1400;
-      box-shadow: 0 6px 20px rgba(212,175,55,.25);
+      box-shadow: 0 6px 18px rgba(212,175,55,.3);
     }
 
     .btn-login:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 8px 24px rgba(212,175,55,.4);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 10px 25px rgba(212,175,55,.45);
     }
 
     .btn-signup {
@@ -156,33 +110,36 @@
     }
 
     .btn-signup:hover {
-      background: rgba(212,175,55,.05);
+      background: rgba(212,175,55,.08);
       transform: translateY(-2px);
     }
 
-    .back-link {
-      display: block;
+    .socials {
       margin-top: 20px;
-      text-align: center;
-      color: var(--gold-light);
-      text-decoration: none;
-      font-size: 15px;
-      transition: color .3s;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
     }
 
-    .back-link:hover {
-      text-decoration: underline;
+    .socials a {
+      color: var(--gold-light);
+      font-size: 22px;
+      transition: transform .3s, color .3s;
+    }
+
+    .socials a:hover {
+      transform: scale(1.2);
       color: var(--gold);
     }
 
     @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
+      from {opacity: 0; transform: translateY(25px);}
       to {opacity: 1; transform: translateY(0);}
     }
 
     @keyframes glow {
-      from { box-shadow: 0 0 10px rgba(212,175,55,.3); }
-      to   { box-shadow: 0 0 25px rgba(212,175,55,.7); }
+      from { box-shadow: 0 0 15px rgba(212,175,55,.3); }
+      to   { box-shadow: 0 0 30px rgba(212,175,55,.6); }
     }
   </style>
 
@@ -197,8 +154,7 @@
       projectId: "monex-academ",
       storageBucket: "monex-academ.appspot.com",
       messagingSenderId: "739982923559",
-      appId: "1:739982923559:web:82432263c1758861d3fb02",
-      measurementId: "G-V33BX5JMNV"
+      appId: "1:739982923559:web:82432263c1758861d3fb02"
     };
 
     const app = initializeApp(firebaseConfig);
@@ -225,7 +181,6 @@
   </script>
 </head>
 <body>
-  <div class="bg"></div>
   <div class="login-box">
     <img class="logo" src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="شعار الأكاديمية">
     <h2>تسجيل الدخول</h2>
@@ -233,8 +188,13 @@
     <input type="password" id="password" placeholder="كلمة المرور">
     <button class="btn btn-login" onclick="login()">دخول</button>
     <button class="btn btn-signup" onclick="signup()">إنشاء حساب</button>
+    
+    <div class="socials">
+      <a href="https://instagram.com/" target="_blank">📸</a>
+      <a href="https://facebook.com/" target="_blank">🌐</a>
+      <a href="https://t.me/" target="_blank">✈</a>
+    </div>
   </div>
 </body>
 </html>
-
 
