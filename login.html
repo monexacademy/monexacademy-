@@ -2,206 +2,238 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>تسجيل الدخول | أكاديمية مونكس</title>
   <style>
     :root {
       --gold: #d4af37;
-      --dark-bg: #0a0a0a;
+      --gold-light: #f9e07f;
+      --bg-dark: #0b0b0c;
+      --bg-dark2: #151518;
+      --text: #f7f7f7;
+      --radius: 20px;
+      --shadow: 0 12px 35px rgba(0,0,0,.6);
     }
+
+    * {box-sizing: border-box;}
+
     body {
       margin: 0;
-      height: 100vh;
+      font-family: "Cairo", sans-serif;
+      color: var(--text);
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #000, #1a1a1a);
+      padding: 20px;
+      background: linear-gradient(145deg, var(--bg-dark), var(--bg-dark2));
       overflow: hidden;
-      font-family: sans-serif;
     }
-    /* خلفية 3D */
-    body::before {
+
+    /* خلفية ثلاثية الأبعاد */
+    .bg {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, #222 0%, #000 100%);
+      overflow: hidden;
+      z-index: -1;
+      animation: rotateBg 20s linear infinite;
+      transform: perspective(1000px) rotateX(25deg) rotateZ(0deg);
+    }
+
+    .bg::before {
       content: "";
       position: absolute;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(212,175,55,0.15) 10%, transparent 10%) repeat;
-      background-size: 60px 60px;
-      animation: move 15s linear infinite;
-      transform: rotate(25deg);
-    }
-    @keyframes move {
-      from { background-position: 0 0; }
-      to { background-position: 60px 60px; }
+      background-image: repeating-linear-gradient(
+        45deg,
+        rgba(212,175,55,0.08) 0px,
+        rgba(212,175,55,0.08) 2px,
+        transparent 2px,
+        transparent 40px
+      );
+      animation: moveLines 12s linear infinite;
     }
 
+    @keyframes rotateBg {
+      0% { transform: perspective(1000px) rotateX(25deg) rotateZ(0deg);}
+      100% { transform: perspective(1000px) rotateX(25deg) rotateZ(360deg);}
+    }
+
+    @keyframes moveLines {
+      0% { transform: translateY(0);}
+      100% { transform: translateY(-200px);}
+    }
+
+    /* صندوق تسجيل الدخول */
     .login-box {
-      position: relative;
-      background: rgba(20,20,20,0.95);
-      padding: 25px;
-      border-radius: 15px;
+      width: 100%;
+      max-width: 400px;
+      padding: 40px 30px;
+      background: rgba(21,21,24,0.8);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(15px);
+      animation: fadeIn 0.8s ease;
       text-align: center;
-      color: white;
-      width: 90%;
-      max-width: 360px;
-      box-shadow: 0 0 25px rgba(0,0,0,0.8);
-      z-index: 1;
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease;
+    }
+
+    .login-box:hover {
+      transform: rotateY(5deg) rotateX(5deg) scale(1.02);
     }
 
     .logo {
       width: 90px;
       height: 90px;
       border-radius: 50%;
+      margin-bottom: 15px;
       object-fit: cover;
       border: 3px solid var(--gold);
-      box-shadow: 0 0 20px rgba(212,175,55,.4),
-                  0 8px 15px rgba(0,0,0,0.6);
+      box-shadow: 0 0 20px rgba(212,175,55,.5);
       animation: glow 2s infinite alternate;
-      margin-bottom: 15px;
-    }
-    @keyframes glow {
-      from { box-shadow: 0 0 10px var(--gold); }
-      to { box-shadow: 0 0 25px var(--gold); }
     }
 
     h2 {
-      margin-bottom: 20px;
-      color: var(--gold);
+      margin-bottom: 24px;
+      font-size: 26px;
+      font-weight: bold;
+      background: linear-gradient(92deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     input {
       width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 8px;
-      font-size: 14px;
+      padding: 14px 16px;
+      margin: 10px 0;
+      border: 1px solid rgba(212,175,55,.35);
+      border-radius: 12px;
+      outline: none;
+      font-size: 16px;
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      transition: border .3s, box-shadow .3s, transform .2s;
     }
 
-    button {
+    input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212,175,55,.25);
+      transform: scale(1.02);
+    }
+
+    .btn {
       width: 100%;
-      padding: 12px;
+      padding: 14px;
+      margin-top: 14px;
       border: none;
-      border-radius: 8px;
-      background: var(--gold);
-      color: black;
+      border-radius: 12px;
+      cursor: pointer;
       font-size: 16px;
       font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.2s;
-      margin-top: 10px;
-    }
-    button:hover {
-      transform: scale(1.05);
+      transition: all 0.3s ease;
     }
 
-    .google-btn {
-      background: white;
-      color: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-    }
-    .google-btn img {
-      width: 18px;
-      height: 18px;
+    .btn-login {
+      background: linear-gradient(92deg, var(--gold), var(--gold-light));
+      color: #1b1400;
+      box-shadow: 0 6px 20px rgba(212,175,55,.25);
     }
 
-    .social {
+    .btn-login:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 24px rgba(212,175,55,.4);
+    }
+
+    .btn-signup {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(212,175,55,.4);
+    }
+
+    .btn-signup:hover {
+      background: rgba(212,175,55,.05);
+      transform: translateY(-2px);
+    }
+
+    .back-link {
+      display: block;
       margin-top: 20px;
-    }
-    .social a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
+      text-align: center;
+      color: var(--gold-light);
       text-decoration: none;
-      color: white;
       font-size: 15px;
-      transition: color 0.3s;
+      transition: color .3s;
     }
-    .social a:hover {
+
+    .back-link:hover {
+      text-decoration: underline;
       color: var(--gold);
     }
-    .social svg {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
     }
 
-    @media (max-width: 400px) {
-      .login-box { padding: 20px; }
-      button { font-size: 14px; padding: 10px; }
+    @keyframes glow {
+      from { box-shadow: 0 0 10px rgba(212,175,55,.3); }
+      to   { box-shadow: 0 0 25px rgba(212,175,55,.7); }
     }
   </style>
-</head>
-<body>
-  <div class="login-box">
-    <img class="logo" src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="شعار الأكاديمية">
-    <h2>تسجيل الدخول</h2>
-
-    <!-- فورم تسجيل دخول -->
-    <input type="email" id="email" placeholder="البريد الإلكتروني" required>
-    <input type="password" id="password" placeholder="كلمة المرور" required>
-    <button onclick="loginWithEmail()">تسجيل الدخول</button>
-
-    <!-- تسجيل دخول بجوجل -->
-    <button class="google-btn" onclick="loginWithGoogle()">
-      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
-      <span>تسجيل الدخول باستخدام Google</span>
-    </button>
-
-    <div class="social">
-      <a href="https://www.instagram.com/monex_academy/" target="_blank">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm10 1a1 1 0 100 2 1 1 0 000-2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/></svg>
-        <span>@monex_academy</span>
-      </a>
-    </div>
-  </div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } 
+      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
+      apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNml2LOl5o",
+      authDomain: "monex-academ.firebaseapp.com",
+      projectId: "monex-academ",
+      storageBucket: "monex-academ.appspot.com",
+      messagingSenderId: "739982923559",
+      appId: "1:739982923559:web:82432263c1758861d3fb02",
+      measurementId: "G-V33BX5JMNV"
     };
+
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
 
-    // تسجيل دخول بالبريد وكلمة السر
-    function loginWithEmail() {
+    window.login = function () {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
       signInWithEmailAndPassword(auth, email, password)
-        .then(userCredential => {
-          window.location.href = "index.html";
-        })
-        .catch(error => {
-          alert("خطأ: " + error.message);
-        });
-    }
-    window.loginWithEmail = loginWithEmail;
+        .then(() => window.location.href = "index.html")
+        .catch((error) => alert(error.message));
+    };
 
-    // تسجيل دخول بجوجل
-    function loginWithGoogle() {
-      signInWithPopup(auth, provider)
-        .then(result => {
+    window.signup = function () {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          alert("✅ تم إنشاء الحساب بنجاح");
           window.location.href = "index.html";
         })
-        .catch(error => {
-          alert("فشل تسجيل الدخول: " + error.message);
-        });
-    }
-    window.loginWithGoogle = loginWithGoogle;
+        .catch((error) => alert(error.message));
+    };
   </script>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="login-box">
+    <img class="logo" src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="شعار الأكاديمية">
+    <h2>تسجيل الدخول</h2>
+    <input type="email" id="email" placeholder="البريد الإلكتروني">
+    <input type="password" id="password" placeholder="كلمة المرور">
+    <button class="btn btn-login" onclick="login()">دخول</button>
+    <button class="btn btn-signup" onclick="signup()">إنشاء حساب</button>
+  </div>
 </body>
 </html>
 
