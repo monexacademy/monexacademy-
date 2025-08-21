@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>تسجيل الدخول | أكاديمية مونكس</title>
   <style>
+    :root {
+      --gold: #d4af37;
+      --dark-bg: #0b0b0c;
+      --light-bg: #151518;
+    }
+
     body {
       margin: 0;
       font-family: "Cairo", sans-serif;
@@ -13,7 +19,7 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-      background: linear-gradient(145deg, #0b0b0c, #151518);
+      background: linear-gradient(145deg, var(--dark-bg), var(--light-bg));
       color: #f7f7f7;
       overflow: hidden;
       position: relative;
@@ -27,7 +33,7 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: conic-gradient(from 180deg, #d4af37, #f9e07f, #0b0b0c, #151518, #d4af37);
+      background: conic-gradient(from 180deg, var(--gold), #f9e07f, var(--dark-bg), var(--light-bg), var(--gold));
       animation: rotateBg 12s linear infinite;
       z-index: 0;
       transform-style: preserve-3d;
@@ -37,125 +43,123 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.7); /* عشان يبان النص واضح */
+      background: rgba(0,0,0,0.75); 
       z-index: 1;
-    }
-
-    @keyframes rotateBg {
-      from { transform: rotate(0deg) translateZ(0); }
-      to   { transform: rotate(360deg) translateZ(0); }
     }
 
     .login-box {
       position: relative;
       z-index: 2;
-      background: rgba(255,255,255,0.05);
+      background: rgba(21, 21, 24, 0.9);
       padding: 30px;
       border-radius: 15px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
       width: 100%;
-      max-width: 350px;
+      max-width: 360px;
       text-align: center;
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    /* الشعار مع تأثير 3D */
+    .logo {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      object-fit: cover;
+      border: 3px solid var(--gold);
+      box-shadow: 0 0 20px rgba(212,175,55,.4),
+                  0 8px 15px rgba(0,0,0,0.6);
+      animation: glow 2s infinite alternate;
+      transform: perspective(600px) rotateX(5deg) rotateY(-5deg);
     }
 
     .login-box h2 {
       margin-bottom: 20px;
-      color: #f7f7f7;
-    }
-
-    .input-group {
-      margin-bottom: 15px;
-      text-align: right;
-    }
-
-    .input-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 14px;
-    }
-
-    .input-group input {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 8px;
-      outline: none;
+      color: var(--gold);
     }
 
     .btn {
       display: block;
       width: 100%;
       padding: 12px;
-      background: #d4af37;
-      color: #000;
+      margin: 15px 0;
+      background: var(--gold);
       border: none;
       border-radius: 8px;
-      font-weight: bold;
+      color: #000;
+      font-size: 16px;
       cursor: pointer;
       transition: 0.3s;
+      font-weight: bold;
     }
 
     .btn:hover {
-      background: #b9972c;
+      background: #f9e07f;
+      transform: translateY(-2px);
     }
 
-    /* زر إنستغرام */
-    .ig-btn {
+    /* إنستغرام */
+    .social {
+      margin-top: 20px;
+    }
+    .social a {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 16px;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 8px;
-      margin-top: 20px;
-      padding: 10px 15px;
-      border-radius: 8px;
-      border: 1px solid #e1306c;
-      color: #e1306c;
-      text-decoration: none;
-      font-weight: bold;
       transition: 0.3s;
     }
-
-    .ig-btn svg {
-      width: 22px;
-      height: 22px;
-      fill: #e1306c;
+    .social a:hover {
+      color: #f9e07f;
+      transform: scale(1.05);
+    }
+    .social svg {
+      width: 20px;
+      height: 20px;
     }
 
-    .ig-btn:hover {
-      background: #e1306c;
-      color: #fff;
+    @keyframes glow {
+      from { box-shadow: 0 0 5px var(--gold), 0 0 10px var(--gold); }
+      to   { box-shadow: 0 0 20px var(--gold), 0 0 30px var(--gold); }
     }
 
-    .ig-btn:hover svg {
-      fill: #fff;
+    @keyframes rotateBg {
+      from { transform: rotate(0deg) translateZ(0); }
+      to   { transform: rotate(360deg) translateZ(0); }
     }
   </style>
 </head>
 <body>
   <div class="login-box">
+    <!-- الشعار -->
+    <img class="logo" src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="شعار الأكاديمية">
     <h2>تسجيل الدخول</h2>
 
-    <div class="input-group">
-      <label for="email">البريد الإلكتروني</label>
-      <input type="email" id="email" placeholder="example@mail.com">
+    <!-- زر الدخول -->
+    <button class="btn" onclick="loginWithGoogle()">تسجيل الدخول عبر Google</button>
+
+    <!-- إنستغرام -->
+    <div class="social">
+      <a href="https://www.instagram.com/monex_academy/" target="_blank">
+        <!-- أيقونة إنستغرام SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.75-.25a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0z"/>
+        </svg>
+        monex_academy
+      </a>
     </div>
-
-    <div class="input-group">
-      <label for="password">كلمة المرور</label>
-      <input type="password" id="password" placeholder="********">
-    </div>
-
-    <button class="btn">تسجيل الدخول</button>
-
-    <!-- أيقونة إنستغرام -->
-    <a href="https://www.instagram.com/monex_academy/" target="_blank" rel="noopener" class="ig-btn">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6-0.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-      </svg>
-      monex_academy
-    </a>
   </div>
+
+  <script type="module">
+    // Firebase login code هنا
+    function loginWithGoogle() {
+      alert("تسجيل الدخول عبر Google"); 
+    }
+  </script>
 </body>
 </html>
 
