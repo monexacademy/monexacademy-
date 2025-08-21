@@ -103,17 +103,6 @@
       box-shadow: 0 8px 24px rgba(212,175,55,.35);
     }
 
-    .btn-signup {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid rgba(212,175,55,.4);
-    }
-
-    .btn-signup:hover {
-      background: rgba(212,175,55,.05);
-      transform: translateY(-2px);
-    }
-
     .back-link {
       display: block;
       margin-top: 20px;
@@ -129,6 +118,29 @@
       color: var(--gold);
     }
 
+    /* زر إنستغرام */
+    .ig-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin-top: 15px;
+      border-radius: 50%;
+      border: 1px solid #e1306c;
+      text-decoration: none;
+    }
+    .ig-btn svg {
+      display: block;
+      fill: #e1306c;
+    }
+    .ig-btn:hover {
+      background: #e1306c;
+    }
+    .ig-btn:hover svg {
+      fill: #fff;
+    }
+
     @keyframes fadeIn {
       from {opacity: 0; transform: translateY(20px);}
       to {opacity: 1; transform: translateY(0);}
@@ -142,7 +154,7 @@
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } 
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged }
       from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
     const firebaseConfig = {
@@ -166,17 +178,6 @@
         .catch((error) => alert(error.message));
     };
 
-    window.signup = function () {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      createUserWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          alert("✅ تم إنشاء الحساب بنجاح");
-          window.location.href = "index.html";
-        })
-        .catch((error) => alert(error.message));
-    };
-
     window.goHome = function () {
       onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -195,7 +196,14 @@
     <input type="email" id="email" placeholder="البريد الإلكتروني">
     <input type="password" id="password" placeholder="كلمة المرور">
     <button class="btn btn-login" onclick="login()">دخول</button>
-    <button class="btn btn-signup" onclick="signup()">إنشاء حساب</button>
+
+    <!-- زر إنستغرام -->
+    <a class="ig-btn" href="https://www.instagram.com/monex_academy/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6-0.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+      </svg>
+    </a>
+
     <a class="back-link" href="#" onclick="goHome()">⬅ الرجوع إلى الرئيسية</a>
   </div>
 </body>
