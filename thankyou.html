@@ -1,18 +1,131 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>شكراً لك</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin-top: 100px; direction: rtl; }
-    h1 { color: green; }
-    a { display: inline-block; margin-top: 20px; color: #007BFF; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    body {
+      font-family: "Cairo", sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #fffdf2, #fff3c4, #ffd700);
+    }
+
+    .card {
+      background: #fff;
+      padding: 60px 45px;
+      border-radius: 24px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+      text-align: center;
+      max-width: 480px;
+      width: 90%;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffd700, #b8860b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      animation: scaleUp 0.7s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* لمعة متحركة */
+    .icon::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+      animation: shine 3s infinite;
+    }
+
+    h1 {
+      color: #222;
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    p {
+      color: #555;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .highlight {
+      color: #b8860b;
+      font-weight: 700;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 32px;
+      padding: 15px 34px;
+      background: linear-gradient(135deg, #ffd700, #cfa500);
+      color: #222;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: 0.3s;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    a:hover {
+      background: linear-gradient(135deg, #e6c200, #b8860b);
+      transform: translateY(-4px);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scaleUp {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    @keyframes shine {
+      0% { left: -100%; }
+      60% { left: 120%; }
+      100% { left: 120%; }
+    }
+
+    svg {
+      width: 55px;
+      height: 55px;
+      fill: #fff;
+    }
   </style>
 </head>
 <body>
-  <h1>✅ شكراً لك!</h1>
-  <p>تم استلام رسالتك وسنرد عليك قريباً.</p>
-  <a href="index.html">🔙 العودة للصفحة الرئيسية</a>
+  <div class="card">
+    <div class="icon">
+      <!-- أيقونة SVG ذهبية -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="25" fill="none" stroke="white" stroke-width="3"/>
+        <path fill="white" d="M38.6 15.6c-0.8-0.8-2-0.8-2.8 0L22 29.4l-5.8-5.8c-0.8-0.8-2-0.8-2.8 0s-0.8 2 0 2.8l7.2 7.2c0.8 0.8 2 0.8 2.8 0l15.2-15.2c0.8-0.8 0.8-2 0-2.8z"/>
+      </svg>
+    </div>
+    <h1>تم استلام رسالتك بنجاح</h1>
+    <p>شكراً لتواصلك معنا 💛<br> سيتواصل معك فريق <span class="highlight">MONEX ACADEMY</span> في أقرب وقت ممكن.</p>
+    <a href="index.html">🔙 العودة للصفحة الرئيسية</a>
+  </div>
 </body>
 </html>
