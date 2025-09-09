@@ -5,18 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>اتصل بنا | أكاديمية مونكس</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: #f5f7fa;
       color: #333;
       line-height: 1.6;
     }
-    /* هيدر بصورة وتدرج */
     header {
       position: relative;
       background: url('swing-trading-patterns.jpg') center/cover no-repeat;
@@ -30,16 +25,10 @@
     header::after {
       content: "";
       position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
+      top: 0; right: 0; bottom: 0; left: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.1));
     }
-    header .content {
-      position: relative;
-      z-index: 2;
-    }
+    header .content { position: relative; z-index: 2; }
     header .logo {
       max-height: 80px;
       background: white;
@@ -47,104 +36,55 @@
       border-radius: 10px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       position: absolute;
-      top: 20px;
-      right: 20px;
+      top: 20px; right: 20px;
       z-index: 3;
     }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      text-shadow: 0 3px 8px rgba(0,0,0,0.8);
-    }
-    /* شريط التنقل */
+    header h1 { font-size: 2.5rem; margin-bottom: 10px; text-shadow: 0 3px 8px rgba(0,0,0,0.8); }
     nav {
       background: white;
       box-shadow: 0 4px 20px rgba(0,0,0,0.05);
       padding: 12px 0;
       position: sticky;
-      top: 0;
-      z-index: 10;
+      top: 0; z-index: 10;
     }
-    nav ul {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      list-style: none;
-    }
+    nav ul { display: flex; justify-content: center; gap: 20px; list-style: none; }
     nav a {
-      color: #333;
-      font-weight: bold;
-      text-decoration: none;
-      padding: 8px 14px;
-      border-radius: 6px;
-      transition: 0.3s;
+      color: #333; font-weight: bold; text-decoration: none;
+      padding: 8px 14px; border-radius: 6px; transition: 0.3s;
     }
-    nav a:hover {
-      background: #333;
-      color: white;
-    }
-    /* نموذج التواصل */
+    nav a:hover { background: #333; color: white; }
     main {
-      max-width: 600px;
-      margin: 40px auto;
-      background: white;
-      border-radius: 15px;
+      max-width: 600px; margin: 40px auto;
+      background: white; border-radius: 15px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
       padding: 30px 20px;
     }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
+    form { display: flex; flex-direction: column; gap: 15px; }
     input, textarea {
-      padding: 12px 15px;
-      border: 1.5px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-      resize: vertical;
+      padding: 12px 15px; border: 1.5px solid #ccc;
+      border-radius: 8px; font-size: 16px; resize: vertical;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     input:focus, textarea:focus {
-      border-color: #FFD700;
-      box-shadow: 0 0 8px rgba(255, 215, 0, 0.7);
-      outline: none;
+      border-color: #FFD700; box-shadow: 0 0 8px rgba(255,215,0,0.7); outline: none;
     }
     button {
-      padding: 12px;
-      background-color: #FFD700;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 18px;
-      border-radius: 8px;
+      padding: 12px; background-color: #FFD700;
+      border: none; font-weight: bold; cursor: pointer;
+      font-size: 18px; border-radius: 8px;
       transition: background-color 0.3s ease, transform 0.2s ease;
     }
-    button:hover {
-      background-color: #e6c200;
-      transform: scale(1.05);
+    button:hover { background-color: #e6c200; transform: scale(1.05); }
+    button:active { transform: scale(0.98); }
+    #status {
+      text-align: center; margin-top: 10px; font-weight: bold;
+      color: #333;
     }
-    button:active {
-      transform: scale(0.98);
-    }
-    /* الفوتر */
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
+    footer { background: #222; color: white; text-align: center; padding: 20px; margin-top: 40px; }
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      header .logo {
-        max-height: 60px;
-      }
-      nav ul {
-        flex-direction: column;
-      }
+      header h1 { font-size: 2rem; }
+      header .logo { max-height: 60px; }
+      nav ul { flex-direction: column; }
     }
   </style>
 </head>
@@ -166,11 +106,12 @@
   </nav>
 
   <main>
-    <form action="https://formspree.io/f/yourformid" method="POST">
+    <form id="contact-form" action="https://formspree.io/f/movnravk" method="POST">
       <input type="text" name="name" placeholder="اسمك الكامل" required />
-      <input type="email" name="_replyto" placeholder="بريدك الإلكتروني" required />
+      <input type="email" name="email" placeholder="بريدك الإلكتروني" required />
       <textarea name="message" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
       <button type="submit">إرسال</button>
+      <p id="status"></p>
     </form>
   </main>
 
@@ -178,7 +119,31 @@
     جميع الحقوق محفوظة © 2025 - Monex Academy
   </footer>
 
+  <script>
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("status");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      status.textContent = "⏳ جاري الإرسال...";
+      const data = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          window.location.href = "thankyou.html";
+        } else {
+          window.location.href = "error.html";
+        }
+      } catch (error) {
+        window.location.href = "error.html";
+      }
+    });
+  </script>
 </body>
 </html>
-
-
